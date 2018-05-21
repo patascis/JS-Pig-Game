@@ -1,5 +1,5 @@
 // Function Constructor
-
+/*
 var Person = function(name, yearOfBirth, job) {
   this.name = name;
   this.yearOfBirth = yearOfBirth;
@@ -23,3 +23,45 @@ mark.calculateAge();
 console.log(john.lastName);
 console.log(jane.lastName);
 console.log(mark.lastName);
+*/
+
+/*
+ // Object.create
+ var personProto = {
+   calculateAge: function() {
+     console.log(2016-this.yearOfBirth);
+   }
+ };
+
+ var john = Object.create(personProto);
+ john.name = 'John';
+ john.yearOfBirth = 1990;
+ john.job = 'teacher';
+
+var jane = Object.create(personProto,
+{
+  name: { value: 'Jane' },
+  yearOfBirth: { value: 1995 },
+  job : { value: 'designer '}
+});
+
+*/
+
+
+// lectures: passing functions as arguments
+var years = [1990, 1959, 1989, 1923, 1996];
+
+function arrayCalc(arr, fn) {
+  var arrayRes = [];
+  for(var i=0; i < arr.length; i++){
+    arrayRes.push( fn(arr[i]) );
+  }
+  return arrayRes;
+}
+
+function calculateAge(el){
+    return 2016-el;
+}
+
+var ages = arrayCalc(years,calculateAge);
+console.log(ages);
