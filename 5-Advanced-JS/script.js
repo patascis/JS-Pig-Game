@@ -63,5 +63,16 @@ function calculateAge(el){
     return 2016-el;
 }
 
+function maxHeartRate(el){
+  if( el >= 18 && el <= 81 ) {
+    return Math.round(206.9 - (0.67 * el));
+  } else {
+    return -1;
+  }
+}
+
 var ages = arrayCalc(years,calculateAge);
+var rates = arrayCalc(ages, maxHeartRate);
+
 console.log(ages);
+console.log(rates);
