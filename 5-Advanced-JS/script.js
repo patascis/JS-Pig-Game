@@ -80,8 +80,8 @@ console.log(rates);
 */
 
 
-
-/* First Class Functions */
+/*
+// First Class Functions
 
 function interviewQuestion(job){
   if (job === 'designer') {
@@ -102,4 +102,26 @@ var teacherQuestion = interviewQuestion('teacher');
 
 designerQuestion('Frank');
 
+teacherQuestion('Mary');
+
+*/
+
+// Closures
+function interviewQuestion(job){
+  var greet = 'Hello there!';
+  return function(name) {
+    if(job === 'designer'){
+      console.log(greet + ' What is UX design, ' + name + '?');
+    } else if(job === 'teacher') {
+      console.log(greet + ' What do you like to teach? ' + name);
+    } else {
+      console.log(greet + ' What do you do?' + name);
+    }
+  }
+}
+
+var designerQuestion = interviewQuestion('designer');
+var teacherQuestion = interviewQuestion('teacher');
+
+designerQuestion('John');
 teacherQuestion('Mary');
