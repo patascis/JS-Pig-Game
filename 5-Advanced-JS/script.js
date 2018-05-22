@@ -47,7 +47,7 @@ var jane = Object.create(personProto,
 
 */
 
-
+/*
 // lectures: passing functions as arguments
 var years = [1990, 1959, 1989, 1923, 1996];
 
@@ -76,3 +76,30 @@ var rates = arrayCalc(ages, maxHeartRate);
 
 console.log(ages);
 console.log(rates);
+
+*/
+
+
+
+/* First Class Functions */
+
+function interviewQuestion(job){
+  if (job === 'designer') {
+    return function(name) {
+      console.log('What is UX design, ' + name);
+    }
+  } else if (job === 'teacher') {
+    return function(name) {
+      console.log('What do you like to teach? ' + name);
+    }
+  } else {
+    console.log('What do you do? ' + name);
+  }
+}
+
+var designerQuestion = interviewQuestion('designer');
+var teacherQuestion = interviewQuestion('teacher');
+
+designerQuestion('Frank');
+
+teacherQuestion('Mary');
