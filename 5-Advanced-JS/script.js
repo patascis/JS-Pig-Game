@@ -106,6 +106,7 @@ teacherQuestion('Mary');
 
 */
 
+/*
 // Closures
 function interviewQuestion(job){
   var greet = 'Hello there!';
@@ -125,3 +126,4 @@ var teacherQuestion = interviewQuestion('teacher');
 
 designerQuestion('John');
 teacherQuestion('Mary');
+*/
