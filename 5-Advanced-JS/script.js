@@ -127,3 +127,51 @@ var teacherQuestion = interviewQuestion('teacher');
 designerQuestion('John');
 teacherQuestion('Mary');
 */
+
+/** CODING CHALLENGE **/
+
+//Closure - The whole function can still be used and it will not affect new code w/ same variable name
+(function() {
+  function Question(questionText, options, correctAnswer){
+    this.questionText = questionText;
+    this.options = options;
+    this.correctAnswer = correctAnswer;
+  }
+
+  Question.prototype.display = function(){
+    console.log(this.questionText + '\n');
+    for(var i = 0; i < this.options.length; i++){
+      console.log([i] + ': ' + this.options[i] + '\n');
+    }
+  }
+
+  Question.prototype.checkAnswer = function(answer){
+    if( answer === this.correctAnswer ) {
+      console.log('Correct answer!');
+    }
+    else {
+      console.log('Wrong answer!');
+    }
+  }
+
+  // DO this!!!!
+  Question.prototype.moreQuestion = function(){
+  }
+
+  // Create the questions
+  var question1 = new Question('What is my dog\'s name?', ['Rocky', 'Archer', 'Bobby'], 1 );
+  var question2 = new Question('What is 1+1?', ['5', '23', '2'], 2 );
+  var question3 = new Question('Who is this?', ['Patrick', 'Childish Gambino', 'Dude'], 0 );
+
+  // Place question in an array and a n[0-2]
+  var questions = [question1, question2, question3];
+  var n = Math.floor( Math.random() * questions.length );
+
+  // Call the display function from Question
+  questions[n].display();
+
+  //Use prompt and store it in a variable (using parseInt because prompt returns a string)
+  var answer = parseInt(prompt('Please select the correct answer (just type the number).'));
+
+  questions[n].checkAnswer(answer);
+})();
