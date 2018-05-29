@@ -145,33 +145,61 @@ teacherQuestion('Mary');
     }
   }
 
-  Question.prototype.checkAnswer = function(answer){
+  Question.prototype.checkAnswer = function(answer, callback){
+    var sc;
     if( answer === this.correctAnswer ) {
       console.log('Correct answer!');
+      sc = callback(true);
     }
     else {
       console.log('Wrong answer!');
+      sc = callback(false);
     }
+
+    this.displayScore(sc);
   }
 
-  // DO this!!!!
-  Question.prototype.moreQuestion = function(){
+
+  Question.prototype.displayScore = function(score) {
+    console.log('Your current score is ' + score);
+    console.log('-----------------------------------------');
   }
+
 
   // Create the questions
   var question1 = new Question('What is my dog\'s name?', ['Rocky', 'Archer', 'Bobby'], 1 );
   var question2 = new Question('What is 1+1?', ['5', '23', '2'], 2 );
   var question3 = new Question('Who is this?', ['Patrick', 'Childish Gambino', 'Dude'], 0 );
 
-  // Place question in an array and a n[0-2]
-  var questions = [question1, question2, question3];
-  var n = Math.floor( Math.random() * questions.length );
+  function score() {
+    var sc = 0;
+    return function(correct){
+      if(correct){
+        sc++;
+      }
+      return sc;
+    }
+  }
 
-  // Call the display function from Question
-  questions[n].display();
+  var keepScore = score();
 
-  //Use prompt and store it in a variable (using parseInt because prompt returns a string)
-  var answer = parseInt(prompt('Please select the correct answer (just type the number).'));
+  function nextQuestion(){
+    // Place question in an array and a n[0-2]
+    var questions = [question1, question2, question3];
+    var n = Math.floor( Math.random() * questions.length );
 
-  questions[n].checkAnswer(answer);
+    // Call the display function from Question
+    questions[n].display();
+
+    //Use prompt and store it in a variable (using parseInt because prompt returns a string)
+    var answer = prompt('Please select the correct answer (just type the number).');
+
+    if(answer !== 'exit'){
+      questions[n].checkAnswer(parseInt(answer), keepScore);
+      nextQuestion();
+    }
+  }
+
+      nextQuestion();
+
 })();
